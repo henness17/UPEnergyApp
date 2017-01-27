@@ -14,7 +14,7 @@ Application Structure
 > Structure and purpose of our Node application components
 
     .
-    ├── public				# Compiled files (alternatively `dist`)
+    ├── public				# Files client must have access to (css, images, js, etc.)
     ├── routes              # Determines how an application responds to a client request
     │   ├── passport.js         # Connects to Passport, which enables Facebook authentication
     │   ├── pg.js               # Connects to our PostgreSQL server hosted by Heroku.com
