@@ -18,9 +18,9 @@ Application Structure
     ├── routes              # Determines how an application responds to a client request
     │   ├── passport.js         # Connects to Passport, which enables Facebook authentication
     │   ├── pg.js               # Connects to our PostgreSQL server hosted by Heroku.com
-    │   ├── routes.js           # General application routes, such as the index            
+    │   └── routes.js           # General application routes, such as the index            
     ├── views               # Page templates 
-    │   ├── partials            # Common components that are included in more than one view, such as a header            
+    │   └── partials            # Common components that are included in more than one view, such as a header            
     ├── app.json            # Application information   
     ├── index.js            # Initializes application      
     ├── package.json        # Defines Node packages needed by application
