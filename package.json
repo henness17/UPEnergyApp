@@ -1,12 +1,12 @@
 {
-  "name": "smart-host",
+  "name": "",
   "version": "0.0.1",
-  "description": "A data visualizer that helps a host create the right mood for the current attendees.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ryan Henness",
+  "author": "",
   "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.15.2",
