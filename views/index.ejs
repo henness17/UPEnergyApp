@@ -1,3 +1,13 @@
 <body>
-	Hey, <b>Bob</b>!
+	<% if (!user) { %>
+		<center>
+			You're not logged in... <br>
+			<a href="/login/facebook">Login with Facebook</a>
+		</center>
+	<% } else {%>
+		You're logged in!<br>
+		Facebook ID: <%=user.id%><br>
+		Username: <%=user.displayName%><br>
+		<a href="/logout/facebook">Login with Facebook</a>
+	<% } %>
 </body>
