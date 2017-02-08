@@ -1,0 +1,12 @@
+<body>
+	<% if (!user) { %>
+		<center>
+			You're not logged in... <br>
+			<a href="/login/facebook">Login with Facebook</a>
+		</center>
+	<% } else {%>
+		You're logged in!<br>
+		<a href="/">Go Home</a><br>
+		<a href="/logout/facebook">Logout</a>
+	<% } %>
+</body>
