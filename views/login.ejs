@@ -1,3 +1,6 @@
+<head>
+	<% include partials/bootstrap %>
+</head>
 <body>
 	<% if (!user) { %>
 		<center>
@@ -5,6 +8,7 @@
 			<a href="/login/facebook">Login with Facebook</a>
 		</center>
 	<% } else {%>
+		<% include partials/navbar %>
 		You're logged in!<br>
 		<a href="/">Go Home</a><br>
 		<a href="/logout/facebook">Logout</a>

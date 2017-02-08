@@ -1,5 +1,9 @@
+<head>
+	<% include partials/bootstrap %>
+</head>
 <body>
-	Welcome Home.<br>
+	<% include partials/navbar %>
+	Welcome Home<br>
 	Facebook ID: <%=user.id%><br>
 	Username: <%=user.displayName%><br>
 	<a href="/logout/facebook">Logout</a>
