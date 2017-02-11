@@ -1,13 +1,27 @@
-<nav class="navbar navbar-default">
+<style>
+  .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+  .navbar-nav>li {
+    float: none;
+    text-align: center;
+    display: inline-block;
+  }
+</style>
+<nav class="navbar navbar-fixed-bottom">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">UPEnergyApp</a>
-    </div>
+      <center>
     <ul class="nav navbar-nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/"><span class="glyphicon glyphicon-home"></span></li></a>
+      <li><a href="/"><span class="glyphicon glyphicon-map-marker"></span></li></a>
+      <li><a href="/"><span class="glyphicon glyphicon-search"></span></li></a>
+      <li><a href="/"><span class="glyphicon glyphicon-globe"></span></li></a>
+      <li><a href="/"><span class="glyphicon glyphicon-cog"></span></li></a>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/logout/facebook">Log out</a></li>
-    </ul>
+    </center>
   </div>
 </nav>
