@@ -1,3 +1,14 @@
+<head>
+	<% include partials/bootstrap %>
+</head>
 <body>
-	Settings...
+	<% include partials/navbar %>
+	<% if(set==false) { %> 
+    	<div class="alert alert-danger">
+      		<center><strong>Wait!</strong> Let's set your settings before you start saving energy.</center>
+    	</div>
+  	<% } %>
+  	<center>
+		Settings...
+	</settings>
 </body>
