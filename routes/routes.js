@@ -29,11 +29,19 @@ module.exports = function(app){
   });
 
   app.get('/settings', loggedIn, CheckSettings, function(req, res){
-    res.render('settings', {user: req.user});
+    res.render('settings', {user: req.user, set: true});
   });
 
   app.get('/profile', loggedIn, CheckSettings, function(req, res){
     res.render('profile', {user: req.user});
+  });
+
+  app.post('/set-settings', loggedIn, function(req, res){
+    // If the user requests to join the room, send the fbid and scene id to pg.JoinScene
+    pg.SetSettings(req.user.id, req.body, callback);
+    function callback(){
+      res.redirect('/home');
+    }
   });
 
   function loggedIn(req, res, next) {
@@ -51,7 +59,7 @@ module.exports = function(app){
         if(userIsSet){
           next();
         }else{
-          res.render('settings', {user: req.user, set:false});
+          res.render('settings', {user: req.user, set: false});
         }
       }
   }

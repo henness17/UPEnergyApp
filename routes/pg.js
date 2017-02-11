@@ -24,6 +24,7 @@ module.exports = function(app){
   };
   module.exports.CheckRegistration = CheckRegistration;
 
+  // Check whether a user has set their settings.
   var CheckSettings = function CheckSettings(facebook_id, callback){
     pg.connect(connect, function(err, client, done){
         client.query("SELECT * FROM public.user_settings WHERE facebook_id=$1", [facebook_id], function(err, result){
@@ -38,5 +39,17 @@ module.exports = function(app){
     });
   };
   module.exports.CheckSettings = CheckSettings;
+
+  // Check whether a user has set their settings.
+  var SetSettings = function SetSettings(facebook_id, formResults, callback){
+    pg.connect(connect, function(err, client, done){
+      client.query("INSERT INTO public.user_settings (facebook_id, username) VALUES ($1, $2)", [facebook_id, formResults.username], function(err, result){
+        done();
+        callback();
+      }
+      ); 
+    });
+  };
+  module.exports.SetSettings = SetSettings;
 };
 
