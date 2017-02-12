@@ -20,6 +20,10 @@ module.exports = function(app){
     res.render('login', {user: req.user});
   });
 
+  app.get('/home', function(req, res){
+    res.redirect('/');
+  });
+
   app.get('/navigation', loggedIn, CheckSettings, function(req, res){
     res.render('navigation', {user: req.user});
   });
