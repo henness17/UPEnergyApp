@@ -40,16 +40,9 @@ module.exports = function(app){
   };
   module.exports.CheckSettings = CheckSettings;
 
-  // Check whether a user has set their settings.
-  var SetSettings = function SetSettings(facebook_id, formResults, callback){
-    pg.connect(connect, function(err, client, done){
-      client.query("INSERT INTO public.user_settings (facebook_id, username) VALUES ($1, $2)", [facebook_id, formResults.username], function(err, result){
-        done();
-        callback();
-      }
-      ); 
-    });
+  var SetUserSettings = function SetUserSettings(facebook_id, formResults, callback){
+
   };
-  module.exports.SetSettings = SetSettings;
+  module.exports.SetUserSettings = SetUserSettings;
 };
 

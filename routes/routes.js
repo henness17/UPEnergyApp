@@ -40,9 +40,9 @@ module.exports = function(app){
     res.render('profile', {user: req.user});
   });
 
-  app.post('/set-settings', loggedIn, function(req, res){
+  app.post('/set-user-settings', loggedIn, function(req, res){
     // If the user requests to join the room, send the fbid and scene id to pg.JoinScene
-    pg.SetSettings(req.user.id, req.body, callback);
+    pg.SetUserSettings(req.user.id, req.body, callback);
     function callback(){
       res.redirect('/home');
     }
