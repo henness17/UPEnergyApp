@@ -3,7 +3,7 @@ module.exports = function(app){
 	require('./passport.js')(app);
 	var pg = require('./pg');
   var bodyParser = require('body-parser'),
-      path = require('path');
+  path = require('path');
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false}));
 
@@ -33,8 +33,12 @@ module.exports = function(app){
   });
 
   app.get('/settings', loggedIn, CheckSettings, function(req, res){
-    res.render('settings', {user: req.user, set: true});
+    var UserSettings = pg.GetUserSettings(req.user.id, callback);
+    function callback(UserSettings){
+      res.render('settings', {user: req.user, set: true, UserSettings: UserSettings});
+    }
   });
+
 
   app.get('/profile', loggedIn, CheckSettings, function(req, res){
     res.render('profile', {user: req.user});
@@ -47,7 +51,6 @@ module.exports = function(app){
       res.redirect('/home');
     }
   });
-
   function loggedIn(req, res, next) {
     if (req.user) {
         next();
@@ -55,16 +58,15 @@ module.exports = function(app){
         res.redirect('/login');
     }
   }
-
   function CheckSettings(req, res, next){
-      pg.CheckSettings(req.user.id, callback);
-      //res.render('scenes', {scenes: scenes});
-      function callback(userIsSet){
-        if(userIsSet){
-          next();
-        }else{
-          res.render('settings', {user: req.user, set: false});
-        }
+    pg.CheckSettings(req.user.id, callback);
+    //res.render('scenes', {scenes: scenes});
+    function callback(userIsSet){
+      if(userIsSet){
+        next();
+      }else{
+        res.render('settings', {user: req.user, set: false, UserSettings: {username: ""}});
       }
+    }
   }
 }

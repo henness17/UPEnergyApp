@@ -10,7 +10,7 @@
   	<% } %>
   	<center>
 		<form action="/set-user-settings" method="post">
-  			Username: <input type="text" name="username"><br>
+  			Username: <input type="text" name="username" value="<%= UserSettings.username %>"><br>
   			<input type="submit" value="Submit">
 		</form>
 	</settings>
