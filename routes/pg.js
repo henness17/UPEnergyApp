@@ -42,6 +42,7 @@ module.exports = function(app){
 
   var SetUserSettings = function SetUserSettings(facebook_id, formResults, callback){
     pg.connect(connect, function(err, client, done){
+      // Update mpg here...
       client.query("SELECT * FROM public.user_settings WHERE facebook_id=$1", [facebook_id], function(err, result){
         if(err){
           console.log(err);

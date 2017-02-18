@@ -15,6 +15,7 @@ if(process.env.PASSPORT_CLIENT_ID == undefined){
 require('./routes/routes.js')(app);
 require('./routes/passport.js')(app);
 require('./routes/pg.js')(app);
+require('./routes/calculators/transportation.js')(app);
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });

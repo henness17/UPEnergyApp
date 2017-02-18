@@ -14,7 +14,10 @@
   	<center>
 		<form action="/set-user-settings" method="post">
   			Username: <input type="text" name="username" value="<%= UserSettings.username %>"><br>
-  			<input type="submit" value="Submit">
+        <!-- Dropdown of Passenger car, Van, SUV, Pickup Truck, Motorcycle -->
+        Personal Transportation:<input type="text" name="" value=""><br>
+  			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
+    <a href="/logout/facebook"><button type="button" class="btn btn-danger">Logout</button></a>
 	</settings>
 </body>

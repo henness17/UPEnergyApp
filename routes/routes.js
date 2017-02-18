@@ -2,6 +2,7 @@ module.exports = function(app){
 	// routes must include passport
 	require('./passport.js')(app);
 	var pg = require('./pg');
+  var transportation = require('./calculators/transportation');
   var bodyParser = require('body-parser'),
   path = require('path');
   app.use(bodyParser.json());
@@ -12,7 +13,11 @@ module.exports = function(app){
     // We'll need to check whether the user is registered or not in pg.js
     pg.CheckRegistration(req.user.id, callback);
     function callback(){
-      res.render('home', {user: req.user});
+      var UserSettings = pg.GetUserSettings(req.user.id, callback2);
+      function callback2(UserSettings){
+        console.log("\n\n\n\n\n SUV: " + transportation.GetMpg("SUV") + "MPG");
+        res.render('home', {user: req.user, UserSettings: UserSettings});
+      }
     }
   });
 
@@ -38,7 +43,6 @@ module.exports = function(app){
       res.render('settings', {user: req.user, set: true, UserSettings: UserSettings});
     }
   });
-
 
   app.get('/profile', loggedIn, CheckSettings, function(req, res){
     res.render('profile', {user: req.user});
