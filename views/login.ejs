@@ -2,16 +2,24 @@
 	<% include partials/bootstrap %>
   <style>
     <% include css/css-general %>
+    #page {
+    	padding-top: 8%;
+    }
   </style>
 </head>
 <body>
+	<% include partials/navbar %>
 	<% if (!user) { %>
 		<center>
-			You're not logged in... <br>
-			<a href="/login/facebook">Login with Facebook</a>
+		<div id="page">
+			<img src="logo.png" height="25%"></img><br>
+			<h1>Login</h1><br>
+			<a href="/login/facebook">
+				<button type="button" class="btn btn-primary">Connect With Facebook</button>
+			</a>
+		</div>
 		</center>
 	<% } else {%>
-		<% include partials/navbar %>
 		<center>
 			You're logged in!<br>
 			<a href="/">Go Home</a><br>

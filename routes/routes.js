@@ -44,6 +44,10 @@ module.exports = function(app){
     res.render('profile', {user: req.user});
   });
 
+  app.get('/fb-login', function(req, res){
+    res.render('fb_login');
+  });
+
   app.post('/set-user-settings', loggedIn, function(req, res){
     // If the user requests to join the room, send the fbid and scene id to pg.JoinScene
     pg.SetUserSettings(req.user.id, req.body, callback);
@@ -59,7 +63,7 @@ module.exports = function(app){
         res.redirect('/login');
     }
   }
-  
+
   function CheckSettings(req, res, next){
     pg.CheckSettings(req.user.id, callback);
     //res.render('scenes', {scenes: scenes});
