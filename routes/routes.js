@@ -51,6 +51,7 @@ module.exports = function(app){
       res.redirect('/home');
     }
   });
+
   function loggedIn(req, res, next) {
     if (req.user) {
         next();
@@ -58,6 +59,7 @@ module.exports = function(app){
         res.redirect('/login');
     }
   }
+  
   function CheckSettings(req, res, next){
     pg.CheckSettings(req.user.id, callback);
     //res.render('scenes', {scenes: scenes});
