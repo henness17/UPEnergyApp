@@ -43,29 +43,28 @@ module.exports = function(app){
   var SetUserSettings = function SetUserSettings(facebook_id, formResults, callback){
     pg.connect(connect, function(err, client, done){
       // Update mpg here...
+      console.log(formResults.furnace);
       client.query("SELECT * FROM public.user_settings WHERE facebook_id=$1", [facebook_id], function(err, result){
         if(err){
           console.log(err);
         }else{
           if(result.rows.length > 0){
             client.query("UPDATE public.user_settings SET username=$1 WHERE facebook_id=$2", [formResults.username, facebook_id], function(err2, result2){
-              if(err2){
+              client.query("UPDATE public.user_buildings SET rooms=$1,floors=$2,furnace=$3,bathrooms=$4,ac=$5,windows=$6  WHERE facebook_id=$7", [formResults.rooms, formResults.floors, formResults.furnace, formResults.bathrooms, formResults.ac, formResults.windows, facebook_id], function(err3, result3){
                 console.log(err2);
-              }else{
-                console.log("Modified username of " + facebook_id);      
-              }
-              done();
-              callback();
+                console.log(err3);
+                done();
+                callback();
+              });
             });
           }else{
+            console.log("Inside the else");
             client.query("INSERT INTO public.user_settings (facebook_id, username) VALUES ($1, $2)", [facebook_id, formResults.username], function(err2, result2){
-              if(err2){
-                console.log(err2);
-              }else{
-                console.log("New user added " + facebook_id);      
-              }
-              done();
-              callback();
+              client.query("INSERT INTO public.user_buildings (facebook_id, rooms, floors, furnace, bathrooms, ac, windows) VALUES ($1, $2, $3, $4, $5, $6, $7)", [facebook_id, formResults.rooms, formResults.floors, formResults.furnace, formResults.bathrooms, formResults.ac, formResults.windows], function(err3, result3){
+                console.log(err3)
+                done();
+                callback();
+              });
             });
           } 
         }

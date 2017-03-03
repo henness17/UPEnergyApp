@@ -48,6 +48,14 @@ module.exports = function(app){
     res.render('profile', {user: req.user});
   });
 
+  app.get('/feed', loggedIn, CheckSettings, function(req, res){
+    res.render('feed', {user: req.user});
+  });
+
+  app.get('/friends', loggedIn, CheckSettings, function(req, res){
+    res.render('friends', {user: req.user});
+  });
+
   app.get('/fb-login', function(req, res){
     res.render('fb_login');
   });

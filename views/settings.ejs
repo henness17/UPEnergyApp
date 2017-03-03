@@ -12,11 +12,63 @@
     	</div>
   	<% } %>
   	<center>
+    <h1>Settings</h1>
 		<form action="/set-user-settings" method="post">
-  			Username: <input type="text" name="username" value="<%= UserSettings.username %>"><br>
-        <!-- Dropdown of Passenger car, Van, SUV, Pickup Truck, Motorcycle -->
-        Personal Transportation:<input type="text" name="" value=""><br>
-  			<button type="submit" class="btn btn-primary">Submit</button>
+      <h2></h2>
+  		Username: <input type="text" name="username" value="<%= UserSettings.username %>"><br>
+      <label for="transportation">Personal Transportation</label>
+      <select class="form-control" name="transportation">
+        <option>SUV</option>
+        <option>Passenger</option>
+        <option>Truck</option>
+        <option>Van</option>
+        <option>Motorcycle</option>
+      </select>
+      <h2>Your first building</h2>
+      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Settings</button><br>
+      <div id="demo" class="collapse">
+      <label for="transportation">Rooms</label>
+      <select class="form-control" name="rooms">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+      <label for="transportation">Floors</label>
+      <select class="form-control" name="floors">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+      <label for="transportation">Furnace</label>
+      <select class="form-control" name="furnace">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      <label for="transportation">Bathroom</label>
+      <select class="form-control" name="bathrooms">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+      <label for="transportation">AC</label>
+      <select class="form-control" name="ac">
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+      <label for="transportation">Windows</label>
+      <select class="form-control" name="windows">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+    </div>
+  		<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
     <a href="/logout/facebook"><button type="button" class="btn btn-danger">Logout</button></a>
 	</settings>
