@@ -5,10 +5,7 @@
     <% include css/css-navigation %>
   </style>
 </head>
-<body>
-	<!-- Open Map link -->
-	<a href="http://maps.apple.com/?daddr=Portland+Oregon&dirflg=w&saddr=Scappoose+Oregon">Open Map</a>
-
+<body>	
 	<!-- Address Inputs -->
     <input id="origin-input" class="controls" type="text"
         placeholder="Origin">
@@ -27,15 +24,16 @@
           <th class="transitHeading">Money</th>
           <th class="transitHeading">Carbon</th>
         </tr>
-        <tr>
-          <td class="transitTitle">Driving</td>
+        <tr onclick="openMapsApp(0)">
+          <h3>Select A Mode Of Transportation</h3>
+          <td class="drivingTitle">Driving</td>
           <td id="cost_driving_color" class="legendItem">    </td>
           <td><div id="cost_driving_time" class="costitem">-</div></td>
           <td><div id="cost_driving_distance" class="costitem">-</div></td>
           <td><div id="cost_driving_money" class="costitem">-</div></td>
           <td><div id="cost_driving_carbon" class="costitem">-</div></td>
         </tr>
-        <tr>
+        <tr onclick="openMapsApp(1)">
           <td class="transitTitle">Transit</td>
           <td id="cost_transit_color" class="legendItem">    </td>
           <td><div id="cost_transit_time" class="costitem">-</div></td>
@@ -43,15 +41,16 @@
           <td><div id="cost_transit_money" class="costitem">-</div></td>
           <td><div id="cost_transit_carbon" class="costitem">-</div></td>
         </tr>
-          <td class="transitTitle">Bicycling</td>
+        <tr onclick="openMapsApp(2)">
+          <td class="bicyclingTitle">Bicycling</td>
           <td id="cost_bicycling_color" class="legendItem">    </td>
           <td><div id="cost_bicycling_time" class="costitem">-</div></td>
           <td><div id="cost_bicycling_distance" class="costitem">-</div></td>
           <td><div id="cost_bicycling_money" class="costitem">-</div></td>
           <td><div id="cost_bicycling_carbon" class="costitem">-</div></td>
         </tr>
-        <tr>
-          <td class="transitTitle">Walking</td>
+        <tr onclick="openMapsApp(3)">
+          <td class="walkingTitle">Walking</td>
           <td id="cost_walking_color" class="legendItem">    </td>
           <td><div id="cost_walking_time" class="costitem">-</div></td>
           <td><div id="cost_walking_distance" class="costitem">-</div></td>
@@ -165,6 +164,7 @@
 	    route(origin_place_id, destination_place_id, google.maps.TravelMode.BICYCLING,
 	          directionsService, directionsDisplayBicycling);
 	  };
+
 	  function route(origin_place_id, destination_place_id, travel_mode,
 	                 directionsService, directionsDisplay) {
 	    if (!origin_place_id || !destination_place_id) {
@@ -190,6 +190,7 @@
 	      }
 	    });
 	  }
+
 	  function populatePopup(response, travelmode) {
 	    var costPerMile, fare, time, money, distance;
 	    var metersPerMile = 0.000621371;
@@ -243,6 +244,26 @@
 	        //console.log(response[0].legs[0]);
 	    }
 	  }
+	}
+	
+	// Opens the maps app with the user input origin and desitination values that were autofilled
+	function openMapsApp(type){
+	  	var originInput = document.getElementById("origin-input").value;
+	  	var destinationInput = document.getElementById("destination-input").value;
+	  	var transportation = "d"; // driving, transit, bike, walk
+	  	if(type == 0){
+	  		transportation = "d";
+	  	}
+	  	if(type == 1){
+	  		transportation = "r";
+	  	}
+	  	if(type == 2){
+	  		transportation = "b";
+	  	}	  	
+	  	if(type == 3){
+	  		transportation = "w";
+	  	}
+	  	window.open("http://maps.apple.com/?daddr=" + destinationInput + "&dirflg=" + transportation + "&saddr=" + originInput);
 	}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiQd8NqaSESBmlH1ycGn4nFhijVsI9ykg&libraries=places&signed_in=true&callback=initMap" async defer>
