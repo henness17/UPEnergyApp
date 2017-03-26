@@ -37,6 +37,10 @@ module.exports = function(app){
     res.render('social', {user: req.user});
   });
 
+  app.get('/admin', loggedIn, isAdmin, function(req, res){
+    res.render('admin', {user: req.user});
+  });
+
   app.get('/settings', loggedIn, CheckSettings, function(req, res){
     var UserSettings = pg.GetUserSettings(req.user.id, callback);
     function callback(UserSettings){
@@ -73,6 +77,14 @@ module.exports = function(app){
         next();
     } else {
         res.redirect('/login');
+    }
+  }
+
+  function isAdmin(req, res, next) {
+    if (req.user.id == 1349636185079249) {
+        next();
+    } else {
+        res.redirect('/');
     }
   }
 
