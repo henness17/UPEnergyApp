@@ -1,6 +1,6 @@
 # UP Energy App
 
-###Collaborators
+### Collaborators
 * Christian Schweizer
 * Koby Craig
 * Liam Cassidy
