@@ -28,3 +28,8 @@ Application Structure
     ├── package.json        # Defines Node packages needed by application
     ├── Procfile            # Defines command run by the server on startup
     └── README.md           
+
+
+DEV NOTES:
+- Implement Promises for db calls
+- Create node package for db functions
